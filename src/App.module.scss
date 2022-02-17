@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Rowdies');
+@import url('https://fonts.googleapis.com/css2?family=Lato');
+
+$main-button-color: #525252;
+$main-green: #24a7b5;
+$main-blue: #246fb5;
+$main-purple: #9600d6;
+
+body {
+	font-family: 'Rowdies', sans-serif;
+	background: linear-gradient($main-green 30%, $main-blue 60%);
+	background-size: cover;
+	background-repeat: no-repeat;
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+$buttons: (
+	1: 'one',
+	2: 'two',
+	3: 'three',
+	4: 'four',
+	5: 'five',
+	6: 'six',
+	7: 'seven',
+	8: 'eight',
+	9: 'nine',
+	0: 'zero',
+	10: 'clear',
+	11: 'decimal',
+	12: 'equals',
+	13: 'add',
+	14: 'subtract',
+	15: 'multiply',
+	16: 'divide',
+);
+
+@each $key, $val in $buttons {
+	.button-#{$key} {
+		grid-area: #{$val};
+	}
+}
+
+#calculator {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: black;
+	padding: 2px;
+	min-width: 320px;
+}
+
+.primary {
+	grid-area: display;
+	display: flex;
+	flex-direction: column;
+	text-align: right;
+	background-color: black;
+	padding: 12px 5px;
+	> p {
+		margin: 0;
+	}
+	> p:first-child {
+		color: #00d6ba;
+		font-size: 14px;
+		margin-bottom: 5px;
+		min-height: 17px;
+	}
+	> p:last-child {
+		color: white;
+		font-size: 18px;
+	}
+}
+
+.button_grid {
+	display: grid;
+	grid-template-areas:
+		'display display display display'
+		'clear clear divide multiply'
+		'seven eight nine add'
+		'four five six subtract'
+		'one two three equals'
+		'zero zero decimal equals';
+	width: 100%;
+}
+.btn {
+	border: none;
+	outline: none;
+	background-color: $main-button-color;
+	padding: 25px 25px;
+	font-family: 'Lato', sans-serif;
+	font-weight: 300;
+	font-size: 16px;
+	color: #fff;
+	border: 1px solid black;
+	cursor: pointer;
+	transition: all 0.4s ease-in-out;
+	&:hover {
+		background-color: lighten($main-button-color, 8%);
+		transform: scale(1.02);
+	}
+}
+.test_button {
+	color: red;
+	border: 4px solid red;
+}
+#clear {
+	background-color: red;
+}
+#add,
+#subtract,
+#multiply,
+#divide {
+	background-color: lighten($main-button-color, 15%);
+	font-size: 20px;
+	font-weight: bold;
+	color: black;
+	&:hover {
+		animation: blueButtonFlash 2s;
+	}
+}
+#equals {
+	background-color: $main-green;
+	&:hover {
+		animation: purpleButtonFlash 2s;
+	}
+}
+
+@keyframes blueButtonFlash {
+	25% {
+		background-color: $main-blue;
+		color: #fff;
+	}
+	75% {
+		background-color: lighten($main-button-color, 15%);
+	}
+}
+
+@keyframes purpleButtonFlash {
+	25% {
+		background-color: $main-purple;
+	}
+	75% {
+		background-color: $main-green;
+	}
+}
